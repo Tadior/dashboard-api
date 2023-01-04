@@ -1,34 +1,44 @@
 {
-  "name": "dashboard-api",
-  "version": "1.0.0",
-  "description": "",
-  "type": "module",
-  "main": "server.js",
-  "scripts": {
-    "start": "node ./dist/main.js",
-    "start:dev": "ts-node ./src/main.ts",
-    "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Tadior/dashboard-api.git"
-  },
-  "author": "Dmitriy Zamulin",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Tadior/dashboard-api/issues"
-  },
-  "homepage": "https://github.com/Tadior/dashboard-api#readme",
-  "dependencies": {
-    "express": "^4.18.2",
-    "inversify": "^6.0.1",
-    "tslog": "^4.7.1"
-  },
-  "devDependencies": {
-    "@types/express": "^4.17.15",
-    "@types/node": "^18.11.18",
-    "reflect-metadata": "^0.1.13",
-    "typescript": "^4.9.4"
-  }
+	"name": "dashboard-api",
+	"version": "1.0.0",
+	"description": "",
+	"type": "commonjs",
+	"scripts": {
+		"start": "node ./dist/main.js",
+		"dev": "nodemon",
+		"dev:inspect": "nodemon -e ts,json --exec node --inspect=localhost:9222 -r ts-node/register src/main.ts",
+		"build": "tsc",
+		"lint": "eslint ./src/**",
+		"lint:fix": "eslint ./src/** --fix",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Tadior/dashboard-api.git"
+	},
+	"author": "Dmitriy Zamulin",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Tadior/dashboard-api/issues"
+	},
+	"homepage": "https://github.com/Tadior/dashboard-api#readme",
+	"dependencies": {
+		"express": "^4.18.2",
+		"inversify": "^6.0.1",
+		"tslog": "^4.7.1"
+	},
+	"devDependencies": {
+		"@types/express": "^4.17.15",
+		"@types/node": "^18.11.18",
+		"@typescript-eslint/eslint-plugin": "^5.48.0",
+		"@typescript-eslint/parser": "^5.48.0",
+		"eslint": "^8.31.0",
+		"eslint-config-prettier": "^8.6.0",
+		"eslint-plugin-prettier": "^4.2.1",
+		"nodemon": "^2.0.20",
+		"prettier": "^2.8.1",
+		"reflect-metadata": "^0.1.13",
+		"ts-node": "^10.9.1",
+		"typescript": "^4.9.4"
+	}
 }

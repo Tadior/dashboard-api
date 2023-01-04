@@ -1,6 +1,6 @@
 export const SYMBOLS = {
-  Application: Symbol.for("Application"),
-  ILogger: Symbol.for("ILogger"),
-  UserController: Symbol.for("UserController"),
-  ExeptionFilter: Symbol.for("ExeptionFilter"),
+	Application: Symbol.for('Application'),
+	ILogger: Symbol.for('ILogger'),
+	UserController: Symbol.for('UserController'),
+	ExeptionFilter: Symbol.for('ExeptionFilter'),
 };
