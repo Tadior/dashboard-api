@@ -24,6 +24,9 @@ export class App {
 		this.userController = userController;
 		this.exeptionFilter = exeptionFilter;
 	}
+	useMiddleware(): void {
+		this.app.use(express.json());
+	}
 	useRoutes(): void {
 		this.app.use('/users', this.userController.router);
 	}
@@ -31,6 +34,7 @@ export class App {
 		this.app.use(this.exeptionFilter.catch.bind(this.exeptionFilter));
 	}
 	public async init(): Promise<void> {
+		this.useMiddleware();
 		this.useRoutes();
 		this.useExeptionFilters();
 		this.server = this.app.listen(this.port);
