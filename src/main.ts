@@ -11,6 +11,11 @@ import { interfaces } from 'inversify/lib/interfaces/interfaces';
 import { IUserController } from './users/users.interface';
 import { IUserService } from './users/users.service.interface';
 import { UserService } from './users/users.service';
+import { ConfigService } from '../config/config.service';
+import { IConfigService } from '../config/config.service.interface';
+import { PrismaService } from './database/prisma.service';
+import { IUsersRepository } from './users/users.repository.interface';
+import { UsersRepository } from './users/users.repository';
 
 interface IBootstrapReturn {
 	appContainer: Container;
@@ -18,11 +23,14 @@ interface IBootstrapReturn {
 }
 
 export const appBindings = new ContainerModule((bind: interfaces.Bind) => {
-	bind<ILogger>(SYMBOLS.ILogger).to(LoggerService);
-	bind<IExeptionFilter>(SYMBOLS.ExeptionFilter).to(ExeptionFilter);
-	bind<IUserController>(SYMBOLS.UserController).to(UserController);
-	bind<IUserService>(SYMBOLS.UserService).to(UserService);
-	bind<App>(SYMBOLS.Application).to(App);
+	bind<ILogger>(SYMBOLS.ILogger).to(LoggerService).inSingletonScope();
+	bind<IExeptionFilter>(SYMBOLS.ExeptionFilter).to(ExeptionFilter).inSingletonScope();
+	bind<IUserController>(SYMBOLS.UserController).to(UserController).inSingletonScope();
+	bind<IUserService>(SYMBOLS.UserService).to(UserService).inSingletonScope();
+	bind<PrismaService>(SYMBOLS.PrismaService).to(PrismaService).inSingletonScope();
+	bind<IConfigService>(SYMBOLS.ConfigService).to(ConfigService).inSingletonScope();
+	bind<IUsersRepository>(SYMBOLS.UsersRepository).to(UsersRepository).inSingletonScope();
+	bind<App>(SYMBOLS.Application).to(App).inSingletonScope();
 });
 
 function bootstrap(): IBootstrapReturn {

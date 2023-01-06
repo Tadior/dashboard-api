@@ -7,6 +7,10 @@ import { injectable } from 'inversify/lib/annotation/injectable';
 import { inject } from 'inversify';
 import { SYMBOLS } from './symbols';
 import 'reflect-metadata';
+import { IUserController } from './users/users.interface';
+import { IConfigService } from '../config/config.service.interface';
+import { IExeptionFilter } from './errors/exeption.filter.interface';
+import { PrismaService } from './database/prisma.service';
 
 @injectable()
 export class App {
@@ -16,7 +20,9 @@ export class App {
 	constructor(
 		@inject(SYMBOLS.ILogger) private logger: ILogger,
 		@inject(SYMBOLS.UserController) private userController: UserController,
-		@inject(SYMBOLS.ExeptionFilter) private exeptionFilter: ExeptionFilter,
+		@inject(SYMBOLS.ExeptionFilter) private exeptionFilter: IExeptionFilter,
+		@inject(SYMBOLS.ConfigService) private configService: IConfigService,
+		@inject(SYMBOLS.PrismaService) private prismaService: PrismaService,
 	) {
 		this.app = express();
 		this.port = 8000;
@@ -37,6 +43,7 @@ export class App {
 		this.useMiddleware();
 		this.useRoutes();
 		this.useExeptionFilters();
+		await this.prismaService.connect();
 		this.server = this.app.listen(this.port);
 		this.logger.log(`Server started on localhost: ${this.port}`);
 	}
