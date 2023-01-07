@@ -4,4 +4,5 @@ import { BaseController } from '../common/base.controller';
 export interface IUserController extends BaseController {
 	register: (req: Request, res: Response, next: NextFunction) => void;
 	login: (req: Request, res: Response, next: NextFunction) => void;
+	info: (req: Request, res: Response, next: NextFunction) => void;
 }
